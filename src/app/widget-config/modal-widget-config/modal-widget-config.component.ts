@@ -160,6 +160,12 @@ export class ModalWidgetConfigComponent implements OnInit {
         }
       }
     });
+
+    // Ensure customColor control exists when color field is present (for custom hex color support)
+    if (groups.get('color') && !groups.get('customColor')) {
+      groups.addControl('customColor', new UntypedFormControl((formData as Record<string, unknown>)['customColor'] || '', [Validators.pattern(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)]));
+    }
+
     return groups;
   }
 
