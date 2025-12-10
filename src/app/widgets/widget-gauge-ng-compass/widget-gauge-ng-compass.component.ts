@@ -202,7 +202,7 @@ export class WidgetGaugeNgCompassComponent implements AfterViewInit {
     else { g.animationTarget = this.ANIMATION_TARGET_NEEDLE; g.useMinPath = true; }
     g.animation = true; g.animateOnInit = true; g.animatedValue = true; g.animationRule = 'linear'; g.animationDuration = (cfg.paths?.['gaugePath']?.sampleTime ?? 500) - 50;
     // Colors (RGBA unsupported -> convert)
-    const palette = getColors(cfg.color, theme);
+    const palette = getColors(cfg.color, theme, cfg.customColor);
     const dim = rgbaToHex(palette.dim);
     const contrastDim = rgbaToHex(getColors('contrast', theme).dim);
     g.colorBarProgress = palette.color; g.colorBorderMiddle = dim; g.colorBorderMiddleEnd = dim; g.colorNeedle = palette.color; g.colorNeedleEnd = palette.color;

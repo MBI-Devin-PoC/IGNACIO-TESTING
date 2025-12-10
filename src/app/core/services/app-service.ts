@@ -78,7 +78,8 @@ export class AppService {
     {label: "Pink", value: "pink"},
     {label: "Purple", value: "purple"},
     {label: "Grey", value: "grey"},
-    {label: "Black", value: "black"}
+    {label: "Black", value: "black"},
+    {label: "Custom", value: "custom"}
   ];
   public snackbarAppNotifications = new Subject<AppNotification>(); // for snackbar message
   public readonly cssThemeColorRoles$ = new BehaviorSubject<ITheme|null>(null);

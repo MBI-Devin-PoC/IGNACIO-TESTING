@@ -464,6 +464,24 @@
                     }
                   </mat-select>
                 </mat-form-field>
+                @if (formMaster.get('color')?.value === 'custom') {
+                  <mat-form-field class="options-grid-span2">
+                    <mat-label>Custom Hex Color</mat-label>
+                    <input
+                      matInput
+                      placeholder="#FF5733"
+                      name="customColor"
+                      formControlName="customColor"
+                      [style.color]="formMaster.get('customColor')?.valid ? formMaster.get('customColor')?.value : 'inherit'"
+                    />
+                    @if (formMaster.get('customColor')?.hasError('pattern')) {
+                      <mat-error>Invalid hex color format. Use #RGB or #RRGGBB</mat-error>
+                    }
+                    @if (formMaster.get('customColor')?.hasError('required')) {
+                      <mat-error>Custom color is required when Custom is selected</mat-error>
+                    }
+                  </mat-form-field>
+                }
               }
               @if ((widgetConfig?.timeScale !== undefined)) {
                 <mat-form-field class="options-grid-span2">

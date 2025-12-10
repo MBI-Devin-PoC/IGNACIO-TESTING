@@ -90,6 +90,8 @@ export interface IWidgetSvcConfig {
 
   /** Color from KIP selection tool to use as main display color */
   color?: string;
+  /** Custom hex color value (e.g., "#FF5733") used when color is set to "custom" */
+  customColor?: string;
   /** Color from KIP selection tool to use as background color */
   bgColor?: string;
   /** Don't apply any display color */

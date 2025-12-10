@@ -85,7 +85,7 @@ export class WidgetPositionComponent implements AfterViewInit, OnDestroy {
       const theme = this.theme();
       if (!cfg || !theme) return;
       untracked(() => {
-        const palette = getColors(cfg.color, theme);
+        const palette = getColors(cfg.color, theme, cfg.customColor);
         this.labelColor.set(palette.dim);
         this.valueColor = palette.color;
         this.draw();

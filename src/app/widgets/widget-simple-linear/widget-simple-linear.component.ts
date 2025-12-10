@@ -106,7 +106,7 @@ export class WidgetSimpleLinearComponent {
                 case States.Warn: this.barColor.set(theme.zoneWarn); break;
                 case States.Alert: this.barColor.set(theme.zoneAlert); break;
                 case States.Nominal: this.barColor.set(theme.zoneNominal); break;
-                default: this.barColor.set(getColors(cfg.color, theme).color); break;
+                default: this.barColor.set(getColors(cfg.color, theme, cfg.customColor).color); break;
               }
             }
           }
@@ -125,7 +125,7 @@ export class WidgetSimpleLinearComponent {
       if (!cfg || !theme) return;
       untracked(() => {
         this.barColorBackground.set(theme.background);
-        const palette = getColors(cfg.color, theme);
+        const palette = getColors(cfg.color, theme, cfg.customColor);
         // Set baseline colors (may be overridden by zone state effect above)
         if (cfg.ignoreZones) {
           this.barColor.set(palette.color);

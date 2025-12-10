@@ -178,7 +178,7 @@ export class WidgetGaugeNgLinearComponent implements AfterViewInit {
 
         const opt: LinearGaugeOptions = {};
         const enableNeedle = cfg.gauge?.enableNeedle;
-        const palette = getColors(cfg.color, theme);
+        const palette = getColors(cfg.color, theme, cfg.customColor);
         switch (state) {
           case States.Alarm:
             if (enableNeedle) {
@@ -250,7 +250,7 @@ export class WidgetGaugeNgLinearComponent implements AfterViewInit {
     opt.fontNumbers = 'Roboto'; opt.fontNumbersWeight = 'normal'; opt.fontUnitsSize = isVertical ? 40 : 35;
     opt.colorTitle = getColors('contrast', theme).dim; opt.colorUnits = getColors('contrast', theme).dim;
     opt.colorValueBoxBackground = theme.background;
-    const palette = getColors(cfg.color, theme);
+    const palette = getColors(cfg.color, theme, cfg.customColor);
     // baseline colors
     opt.colorValueText = palette.color;
     if (enableNeedle) {

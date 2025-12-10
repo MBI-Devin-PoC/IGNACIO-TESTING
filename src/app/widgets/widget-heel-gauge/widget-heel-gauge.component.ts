@@ -120,7 +120,7 @@ export class WidgetHeelGaugeComponent implements AfterViewInit {
       const t = this.theme();
       const cfg = this.runtime.options();
       if (!t || !cfg) return;
-      this.themeColorValue.set(getColors(cfg.color || 'contrast', t).color);
+      this.themeColorValue.set(getColors(cfg.color || 'contrast', t, cfg.customColor).color);
     });
   }
 
@@ -159,7 +159,7 @@ export class WidgetHeelGaugeComponent implements AfterViewInit {
   private setColors(theme: ITheme | null | undefined): void {
     const cfg = this.runtime.options();
     if (!theme || !cfg) return;
-    this.themeColorValue.set(getColors(cfg.color || 'contrast', theme).color);
+    this.themeColorValue.set(getColors(cfg.color || 'contrast', theme, cfg.customColor).color);
   }
 
   private computePointerTransform(angleValue: number | null, scale: 'fine' | 'coarse'): string {

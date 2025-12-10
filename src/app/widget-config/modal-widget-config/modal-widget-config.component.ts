@@ -151,6 +151,9 @@ export class ModalWidgetConfigComponent implements OnInit {
             case "dataTimeout": groups.addControl(key, new UntypedFormControl(value, Validators.required));
               break;
 
+            case "customColor": groups.addControl(key, new UntypedFormControl(value, [Validators.pattern(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)]));
+              break;
+
             default: groups.addControl(key, new UntypedFormControl(value));
               break;
           }
@@ -357,6 +360,10 @@ export class ModalWidgetConfigComponent implements OnInit {
 
   get colorToControl(): UntypedFormControl {
     return this.formMaster.get('color') as UntypedFormControl;
+  }
+
+  get customColorToControl(): UntypedFormControl {
+    return this.formMaster.get('customColor') as UntypedFormControl;
   }
 
   get dateFormatToControl(): UntypedFormControl {
