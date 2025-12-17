@@ -2,7 +2,7 @@ import { browser, by, element, ExpectedConditions as EC, ElementFinder } from 'p
 
 export class SailmonitorPage {
   navigateTo() {
-    return browser.get('/');
+    return browser.get('#/');
   }
 
   getParagraphText() {
@@ -10,10 +10,10 @@ export class SailmonitorPage {
   }
 
   /**
-   * Navigate to the options page
+   * Navigate to the options page (uses hash routing)
    */
   navigateToOptions() {
-    return browser.get('/options');
+    return browser.get('#/options');
   }
 
   /**
