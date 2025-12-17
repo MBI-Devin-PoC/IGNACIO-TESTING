@@ -227,8 +227,8 @@ export class WidgetNumericComponent implements OnInit, AfterViewInit, OnDestroy 
   private setColors(): void {
     const cfg = this.runtime.options();
     if (!cfg) return;
-    this.labelColor.set(getColors(cfg.color, this.theme()).dim);
-    this.valueStateColor = this.valueColor = getColors(cfg.color, this.theme()).color;
+    this.labelColor.set(getColors(cfg.color, this.theme(), cfg.customColor).dim);
+    this.valueStateColor = this.valueColor = getColors(cfg.color, this.theme(), cfg.customColor).color;
     this.backgroundBitmap = null;
     this.backgroundBitmapText = null;
   }

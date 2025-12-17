@@ -118,8 +118,8 @@ export class WidgetTextComponent implements AfterViewInit, OnInit, OnDestroy {
   private setColors(): void {
     const cfg = this.runtime?.options();
     if (!cfg) return;
-    this.labelColor.set(getColors(cfg.color, this.theme()).dim);
-    this.valueColor = getColors(cfg.color, this.theme()).color;
+    this.labelColor.set(getColors(cfg.color, this.theme(), cfg.customColor).dim);
+    this.valueColor = getColors(cfg.color, this.theme(), cfg.customColor).color;
   }
 
   // Runtime config updates are handled by Host2; effects above re-run on changes.

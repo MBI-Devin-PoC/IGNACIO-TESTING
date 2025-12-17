@@ -3,6 +3,7 @@ import { CanvasService } from '../../core/services/canvas.service';
 import { WidgetRuntimeDirective } from '../../core/directives/widget-runtime.directive';
 import { IWidgetSvcConfig } from '../../core/interfaces/widgets-interface';
 import { ITheme } from '../../core/services/app-service';
+import { getColors, isValidHexColor } from '../../core/utils/themeColors.utils';
 
 @Component({
   selector: 'widget-label',
@@ -49,7 +50,7 @@ export class WidgetLabelComponent implements AfterViewInit, OnDestroy {
       const theme = this.theme();
       if (!cfg || !theme) return;
       untracked(() => {
-        this.fgColor.set(this.mapColor(cfg.color, theme));
+        this.fgColor.set(this.mapColor(cfg.color, theme, cfg.customColor));
         this.bgColor.set(this.mapColor(cfg.bgColor ?? 'grey', theme));
         this.draw();
       });
@@ -64,18 +65,14 @@ export class WidgetLabelComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  private mapColor(colorName: string, theme: ITheme): string {
-    switch (colorName) {
-      case 'contrast': return theme.contrast;
-      case 'blue': return theme.blue;
-      case 'green': return theme.green;
-      case 'pink': return theme.pink;
-      case 'orange': return theme.orange;
-      case 'purple': return theme.purple;
-      case 'grey': return theme.grey;
-      case 'yellow': return theme.yellow;
-      default: return theme.contrast;
+  private mapColor(colorName: string, theme: ITheme, customColor?: string): string {
+    // Handle custom hex color
+    if (colorName === 'custom' && customColor && isValidHexColor(customColor)) {
+      return customColor;
     }
+    // Use getColors for predefined colors
+    const colors = getColors(colorName, theme, customColor);
+    return colors?.color ?? theme.contrast;
   }
 
   ngAfterViewInit(): void {

@@ -63,7 +63,7 @@ export class WidgetBooleanSwitchComponent implements OnDestroy {
       const cfg = this.runtime?.options();
       if (!theme || !cfg) return;
       untracked(() => {
-        this.labelColor.set(getColors(cfg.color, theme).dim);
+        this.labelColor.set(getColors(cfg.color, theme, cfg.customColor).dim);
       });
     });
 

@@ -151,12 +151,21 @@ export class ModalWidgetConfigComponent implements OnInit {
             case "dataTimeout": groups.addControl(key, new UntypedFormControl(value, Validators.required));
               break;
 
+            case "customColor": groups.addControl(key, new UntypedFormControl(value, [Validators.pattern(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)]));
+              break;
+
             default: groups.addControl(key, new UntypedFormControl(value));
               break;
           }
         }
       }
     });
+
+    // Ensure customColor control exists when color field is present (for custom hex color support)
+    if (groups.get('color') && !groups.get('customColor')) {
+      groups.addControl('customColor', new UntypedFormControl((formData as Record<string, unknown>)['customColor'] || '', [Validators.pattern(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)]));
+    }
+
     return groups;
   }
 
@@ -357,6 +366,10 @@ export class ModalWidgetConfigComponent implements OnInit {
 
   get colorToControl(): UntypedFormControl {
     return this.formMaster.get('color') as UntypedFormControl;
+  }
+
+  get customColorToControl(): UntypedFormControl {
+    return this.formMaster.get('customColor') as UntypedFormControl;
   }
 
   get dateFormatToControl(): UntypedFormControl {

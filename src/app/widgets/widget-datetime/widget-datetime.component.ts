@@ -137,8 +137,8 @@ export class WidgetDatetimeComponent implements AfterViewInit, OnDestroy {
     const cfg = this.runtime.options();
     const theme = this.theme();
     if (!cfg || !theme) return;
-    this.labelColor.set(getColors(cfg.color, theme).dim);
-    this.valueColor = getColors(cfg.color, theme).color;
+    this.labelColor.set(getColors(cfg.color, theme, cfg.customColor).dim);
+    this.valueColor = getColors(cfg.color, theme, cfg.customColor).color;
   }
 
   ngOnDestroy() {
